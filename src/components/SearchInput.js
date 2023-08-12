@@ -8,11 +8,13 @@ function SearchInput({ onSearch }) {
 	};
 
 	const handleSearch = () => {
-		onSearch(searchQuery);
+		if (searchQuery.trim() !== '') {
+			onSearch(searchQuery);
+		}
 	};
 
 	return (
-		<div>
+		<div className="search-input">
 			<input
 				type="text"
 				value={searchQuery}
