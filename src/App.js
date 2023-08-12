@@ -8,7 +8,7 @@ import { fetchNewsData } from './components/News';
 const App = () => {
 	const [newsData, setNewsData] = useState([]);
 	const [defaultNews, setDefaultNews] = useState([]);
-	const [selectedArticle, setSelectedArticle] = useState(null); // State to track selected article
+	const [selectedArticle, setSelectedArticle] = useState(null);
 
 	useEffect(() => {
 		const currentDate = new Date();
@@ -17,7 +17,11 @@ const App = () => {
 		const formattedDate = currentDate.toISOString().split('T')[0];
 
 		fetchNewsData('default', formattedDate)
-			.then((data) => setDefaultNews(data))
+			.then((data) => {
+				// Limit the number of articles to 20
+				const limitedNews = data.slice(0, 20);
+				setDefaultNews(limitedNews);
+			})
 			.catch((error) => console.error(error));
 	}, []);
 
@@ -28,12 +32,16 @@ const App = () => {
 	};
 
 	const handleArticleClick = (article) => {
-		setSelectedArticle(article); // Update the selected article when clicked
+		setSelectedArticle(article);
+	};
+
+	const handleLogoClick = () => {
+		setSelectedArticle(null);
 	};
 
 	return (
 		<div className="App">
-			<NavBar onSearch={handleSearch} />
+			<NavBar onSearch={handleSearch} onLogoClick={handleLogoClick} />
 			{selectedArticle ? (
 				<ArticlePage article={selectedArticle} />
 			) : (

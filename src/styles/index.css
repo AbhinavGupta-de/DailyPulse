@@ -18,3 +18,16 @@
 	height: 50px;
 	width: 50px;
 }
+
+.article-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px;
+}
+
+.article-img {
+	height: 120px;
+	width: 120px;
+}

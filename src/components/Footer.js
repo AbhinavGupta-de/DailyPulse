@@ -4,8 +4,10 @@ const Footer = () => {
 	return (
 		<div id="footer">
 			<p>
-				Created at <a href="https://www.lighthouselabs.ca/">Lighthouse Labs</a>{' '}
-				with <a href="https://newsapi.org/">NewsAPI</a>
+				Created by <a href="">Abhinav Gupta</a> with the help of the{' '}
+				<a href="https://newsapi.org/">News API</a> during the{' '}
+				<a href="https://www.scaler.com/school-of-technology/">Scaler</a>{' '}
+				Hackathon August, 2023
 			</p>
 		</div>
 	);
