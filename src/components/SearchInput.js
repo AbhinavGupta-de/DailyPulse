@@ -8,7 +8,6 @@ function SearchInput({ onSearch }) {
 	};
 
 	const handleSearch = () => {
-		console.log(searchQuery);
 		if (searchQuery.trim() !== '') {
 			onSearch(searchQuery);
 		}
