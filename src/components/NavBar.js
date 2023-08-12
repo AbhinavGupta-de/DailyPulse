@@ -4,9 +4,9 @@ import logoImg from '../assets/whiteBgLogo.png';
 
 const NavBar = ({ onSearch, onLogoClick }) => {
 	return (
-		<div className="navbar">
+		<div id="navbar">
 			<div className="logo" onClick={onLogoClick}>
-				<img src={logoImg} alt="logo" className="logo-img" />
+				<img src={logoImg} alt="logo" id="logo-img" />
 				<p>Daily Pulse</p>
 			</div>
 			<SearchInput onSearch={onSearch} />
