@@ -1,7 +1,8 @@
 import React from 'react';
 import Article from './Article';
 
-const Hero = ({ artciles }) => {
+const Hero = ({ articles }) => {
+	console.log(articles);
 	return (
 		<div className="hero">
 			<div className="hero-text">
@@ -13,7 +14,9 @@ const Hero = ({ artciles }) => {
 			</div>
 
 			<div className="main-box">
-				<Article />
+				{articles.map((article) => {
+					return <Article key={article.id} article={article} />;
+				})}
 			</div>
 		</div>
 	);

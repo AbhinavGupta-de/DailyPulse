@@ -6,7 +6,6 @@ import Hero from './components/Hero';
 
 const App = () => {
 	const [searchResults, setSearchResults] = useState([]);
-	const [selectedArticle, setSelectedArticle] = useState(null);
 
 	const handleSearch = (searchQuery) => {
 		if (searchQuery.trim() !== '') {
@@ -19,6 +18,7 @@ const App = () => {
 		async function fetchDefaultNews() {
 			try {
 				const results = await fetchNewsData('example');
+				console.log(results);
 				setSearchResults(results);
 			} catch (error) {
 				console.error('Error fetching default news:', error);
@@ -27,14 +27,10 @@ const App = () => {
 		fetchDefaultNews();
 	}, []);
 
-	const handleLogoClick = () => {
-		setSelectedArticle(null);
-	};
-
 	return (
 		<div className="App">
-			<NavBar onSearch={handleSearch} onLogoClick={handleLogoClick} />
-			<Hero />
+			<NavBar onSearch={handleSearch} />
+			<Hero articles={searchResults} />
 			<Footer />
 		</div>
 	);
