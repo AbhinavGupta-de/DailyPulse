@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Article = () => {
+const Article = ({ article }) => {
 	return (
-		<div>
-			<p>Articles</p>
+		<div className="article-list">
+			<img src={article.image} alt={article.title} className="" />
+			<h3>{article.title}</h3>
 		</div>
 	);
 };
