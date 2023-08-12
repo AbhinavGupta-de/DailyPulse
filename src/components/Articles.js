@@ -1,11 +1,12 @@
 import React from 'react';
 
-const Articles = () => {
+const Article = ({ article, onClick }) => {
 	return (
-		<div>
-			<h1>Articles</h1>
+		<div className="article-box" onClick={() => onClick(article)}>
+			<img src={article.urlToImage} alt={article.title} />
+			<h3>{article.title}</h3>
 		</div>
 	);
 };
 
-export default Articles;
+export default Article;

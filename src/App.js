@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-import axios from 'axios';
-
+import ArticlePage from './components/ArticlePage';
 import { fetchNewsData } from './components/News';
 
 const App = () => {
 	const [newsData, setNewsData] = useState([]);
 	const [defaultNews, setDefaultNews] = useState([]);
+	const [selectedArticle, setSelectedArticle] = useState(null); // State to track selected article
 
 	useEffect(() => {
 		const currentDate = new Date();
@@ -27,10 +27,18 @@ const App = () => {
 			.catch((error) => console.error(error));
 	};
 
+	const handleArticleClick = (article) => {
+		setSelectedArticle(article); // Update the selected article when clicked
+	};
+
 	return (
 		<div className="App">
 			<NavBar onSearch={handleSearch} />
-			<Hero />
+			{selectedArticle ? (
+				<ArticlePage article={selectedArticle} />
+			) : (
+				<Hero articles={defaultNews} onArticleClick={handleArticleClick} />
+			)}
 			<Footer />
 		</div>
 	);
