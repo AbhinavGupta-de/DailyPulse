@@ -1,13 +1,18 @@
 import React from 'react';
-import NavBar from './NavBar'; // Make sure to update the import path if needed
 
 const ArticlePage = ({ article }) => {
+	const contentWithoutLastSentence =
+		article.content.split('.').slice(0, -1).join('.') + '.';
+
 	return (
-		<div>
+		<div className="article-page">
 			<div className="article-details">
 				<img src={article.urlToImage} alt={article.title} />
 				<h2>{article.title}</h2>
-				<p>{article.content}</p>
+				<p>{contentWithoutLastSentence}</p>
+				<a href={article.url} target="_blank" rel="noopener noreferrer">
+					Read the full article
+				</a>
 			</div>
 		</div>
 	);

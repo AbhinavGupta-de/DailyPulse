@@ -18,16 +18,23 @@ const App = () => {
 
 		fetchNewsData('default', formattedDate)
 			.then((data) => {
-				// Limit the number of articles to 20
-				const limitedNews = data.slice(0, 20);
-				setDefaultNews(limitedNews);
+				const limitedDefaultNews = data
+					.slice(0, 20)
+					.filter((article) => article.urlToImage); // Limit and filter default articles
+				setDefaultNews(limitedDefaultNews);
 			})
 			.catch((error) => console.error(error));
 	}, []);
 
 	const handleSearch = (searchQuery) => {
 		fetchNewsData(searchQuery)
-			.then((data) => setNewsData(data))
+			.then((data) => {
+				const limitedSearchedNews = data
+					.slice(0, 20)
+					.filter((article) => article.urlToImage); // Limit and filter searched articles
+				setNewsData(limitedSearchedNews);
+				setSelectedArticle(null);
+			})
 			.catch((error) => console.error(error));
 	};
 
@@ -45,7 +52,10 @@ const App = () => {
 			{selectedArticle ? (
 				<ArticlePage article={selectedArticle} />
 			) : (
-				<Hero articles={defaultNews} onArticleClick={handleArticleClick} />
+				<Hero
+					articles={newsData.length > 0 ? newsData : defaultNews}
+					onArticleClick={handleArticleClick}
+				/>
 			)}
 			<Footer />
 		</div>
