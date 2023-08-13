@@ -21,9 +21,7 @@ function SearchInput({ onSearch }) {
 				onChange={handleInputChange}
 				placeholder="Enter your search..."
 			/>
-			<button id="input-btn" onClick={handleSearch}>
-				Search
-			</button>
+			<button onClick={handleSearch}>Search</button>
 		</div>
 	);
 }

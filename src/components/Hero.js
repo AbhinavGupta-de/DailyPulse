@@ -1,17 +1,25 @@
 import React from 'react';
-import Articles from './Articles';
+import Article from './Article';
 
-const Hero = ({ articles, onArticleClick }) => {
+const Hero = ({ articles, onClick }) => {
 	return (
 		<div className="hero">
-			<h2>Featured Articles</h2>
+			<div className="hero-text">
+				<h1>Get the latest news</h1>
+				<p>
+					Daily Pulse is a news aggregator that allows you to search for news
+					articles from various sources and blogs.
+				</p>
+			</div>
+
 			<div className="article-list">
-				{articles.map((article, index) => (
-					<Articles key={index} article={article} onClick={onArticleClick} />
-				))}
+				{articles.map((article) => {
+					return (
+						<Article key={article.url} article={article} onClick={onClick} />
+					);
+				})}
 			</div>
 		</div>
 	);
 };
-
 export default Hero;
