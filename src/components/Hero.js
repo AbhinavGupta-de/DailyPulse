@@ -13,7 +13,7 @@ const Hero = ({ articles }) => {
 				</p>
 			</div>
 
-			<div className="main-box">
+			<div className="article-list">
 				{articles.map((article) => {
 					return <Article key={article.id} article={article} />;
 				})}
