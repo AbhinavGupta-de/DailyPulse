@@ -1,8 +1,7 @@
 import React from 'react';
 import Article from './Article';
 
-const Hero = ({ articles }) => {
-	console.log(articles);
+const Hero = ({ articles, onClick }) => {
 	return (
 		<div className="hero">
 			<div className="hero-text">
@@ -15,7 +14,9 @@ const Hero = ({ articles }) => {
 
 			<div className="article-list">
 				{articles.map((article) => {
-					return <Article key={article.id} article={article} />;
+					return (
+						<Article key={article.url} article={article} onClick={onClick} />
+					);
 				})}
 			</div>
 		</div>

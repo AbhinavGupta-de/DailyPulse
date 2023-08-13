@@ -3,14 +3,15 @@ import NavBar from './components/NavBar';
 import { fetchNewsData } from './components/News';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
+import ArticlePage from './components/ArticlePage';
 
 const App = () => {
 	const [searchResults, setSearchResults] = useState([]);
+	const [selectedArticle, setSelectedArticle] = useState(null);
 
-	const handleSearch = (searchQuery) => {
-		if (searchQuery.trim() !== '') {
-			setSearchResults(fetchNewsData(searchQuery));
-		}
+	const handleSearch = async (searchQuery) => {
+		const results = await fetchNewsData(searchQuery);
+		setSearchResults(results);
 	};
 
 	useEffect(() => {
@@ -18,7 +19,6 @@ const App = () => {
 		async function fetchDefaultNews() {
 			try {
 				const results = await fetchNewsData('example');
-				console.log(results);
 				setSearchResults(results);
 			} catch (error) {
 				console.error('Error fetching default news:', error);
@@ -27,10 +27,22 @@ const App = () => {
 		fetchDefaultNews();
 	}, []);
 
+	const handleArticleClick = (article) => {
+		setSelectedArticle(article);
+	};
+
+	const handleLogoClick = () => {
+		setSelectedArticle(null);
+	};
 	return (
 		<div className="App">
-			<NavBar onSearch={handleSearch} />
-			<Hero articles={searchResults} />
+			<NavBar onSearch={handleSearch} onLogoClick={handleLogoClick} />
+			{selectedArticle ? (
+				<ArticlePage article={selectedArticle} />
+			) : (
+				<Hero articles={searchResults} onClick={handleArticleClick} />
+			)}
+
 			<Footer />
 		</div>
 	);
