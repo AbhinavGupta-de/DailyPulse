@@ -18,7 +18,7 @@ As the site is not very complex so not many difficlties were faced in developing
 
 ## Link to the site
 
-[Daily Pulse](https://daily-pulse.netlify.app/)
+[Daily Pulse](https://dailypulse.netlify.app)
 
 ## Link to video demo
 
