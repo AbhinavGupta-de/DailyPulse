@@ -33,6 +33,7 @@ export const fetchNewsData = async (searchQuery) => {
 				apikey: apiKey,
 			},
 		});
+		console.log(response.data.articles);
 		return response.data.articles;
 	} catch (error) {
 		throw error;

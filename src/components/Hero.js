@@ -2,6 +2,7 @@ import React from 'react';
 import Article from './Article';
 
 const Hero = ({ articles }) => {
+	console.log(articles);
 	return (
 		<div className="hero">
 			<div className="hero-text">
@@ -12,9 +13,9 @@ const Hero = ({ articles }) => {
 				</p>
 			</div>
 
-			<div className="article-list">
+			<div className="main-box">
 				{articles.map((article) => {
-					return <Article key={Math.random} article={article} />;
+					return <Article key={article.id} article={article} />;
 				})}
 			</div>
 		</div>

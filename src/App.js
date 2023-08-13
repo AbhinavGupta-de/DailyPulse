@@ -7,10 +7,9 @@ import Hero from './components/Hero';
 const App = () => {
 	const [searchResults, setSearchResults] = useState([]);
 
-	const handleSearch = async (searchQuery) => {
+	const handleSearch = (searchQuery) => {
 		if (searchQuery.trim() !== '') {
-			const results = await fetchNewsData(searchQuery);
-			setSearchResults(results);
+			setSearchResults(fetchNewsData(searchQuery));
 		}
 	};
 
@@ -19,6 +18,7 @@ const App = () => {
 		async function fetchDefaultNews() {
 			try {
 				const results = await fetchNewsData('example');
+				console.log(results);
 				setSearchResults(results);
 			} catch (error) {
 				console.error('Error fetching default news:', error);
